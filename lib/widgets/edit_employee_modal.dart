@@ -8,10 +8,10 @@ class EditEmployeeModal extends StatefulWidget {
   const EditEmployeeModal({super.key, required this.employee, required this.onSave});
 
   @override
-  _EditEmployeeModalState createState() => _EditEmployeeModalState();
+  EditEmployeeModalState createState() => EditEmployeeModalState();
 }
 
-class _EditEmployeeModalState extends State<EditEmployeeModal> {
+class EditEmployeeModalState extends State<EditEmployeeModal> {
   late TextEditingController _nameController;
   late TextEditingController _cpfController;
   late TextEditingController _sectorController;

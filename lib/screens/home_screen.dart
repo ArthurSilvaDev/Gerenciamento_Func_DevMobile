@@ -27,7 +27,7 @@ class HomeScreen extends StatelessWidget {
               Icons.people,
               () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => EmployeeListScreen()),
+                MaterialPageRoute(builder: (context) => const EmployeeListScreen()),
               ),
             ),
             _buildOptionCard(
@@ -36,7 +36,7 @@ class HomeScreen extends StatelessWidget {
               Icons.person_add,
               () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => EmployeeRegisterScreen()),
+                MaterialPageRoute(builder: (context) => const EmployeeRegisterScreen()),
               ),
             ),
             _buildOptionCard(
@@ -45,7 +45,7 @@ class HomeScreen extends StatelessWidget {
               Icons.business,
               () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SectorsScreen()),
+                MaterialPageRoute(builder: (context) => const SectorsScreen()),
               ),
             ),
             _buildOptionCard(

@@ -1,4 +1,4 @@
-import 'package:mongo_dart/mongo_dart.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Employee {
   final String id;
@@ -15,19 +15,19 @@ class Employee {
 
   Map<String, dynamic> toMap() {
     return {
-      '_id': id.isEmpty ? ObjectId() : ObjectId.fromHexString(id),
       'name': name,
       'cpf': cpf,
       'sector': sector,
     };
   }
 
-  factory Employee.fromMap(Map<String, dynamic> map) {
+  factory Employee.fromFirestore(DocumentSnapshot doc) {
+    Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
     return Employee(
-      id: map['_id'] is ObjectId ? map['_id'].toHexString() : map['_id'].toString(),
-      name: map['name'],
-      cpf: map['cpf'],
-      sector: map['sector'],
+      id: doc.id,
+      name: data['name'] ?? '',
+      cpf: data['cpf'] ?? '',
+      sector: data['sector'] ?? '',
     );
   }
 } 

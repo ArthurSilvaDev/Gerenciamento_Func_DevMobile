@@ -18,7 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
       // Aqui você implementaria sua lógica de autenticação
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
       );
     }
   }

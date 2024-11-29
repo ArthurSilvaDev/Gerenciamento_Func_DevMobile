@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "601482484427",
+    "project_id": "my-app1-89f2d",
+    "storage_bucket": "my-app1-89f2d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:601482484427:android:0f2f1bed2408dbf7dd594e",
+        "android_client_info": {
+          "package_name": "app_flutter.final"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAS6KknnaB2dVZ_5IVRpfGd-Wz9fWACFNM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:601482484427:android:f33e14cc5fa5e3f4dd594e",
+        "android_client_info": {
+          "package_name": "com.example.app_maiscartao"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAS6KknnaB2dVZ_5IVRpfGd-Wz9fWACFNM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

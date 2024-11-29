@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../services/mongodb_service.dart';
+import '../services/firebase_service.dart';
 import '../models/employee.dart';
 import '../widgets/employee_table.dart';
 import '../widgets/edit_employee_modal.dart';
@@ -15,7 +15,7 @@ class EmployeeListScreen extends StatefulWidget {
 }
 
 class _EmployeeListScreenState extends State<EmployeeListScreen> {
-  final MongoDBService _mongoService = MongoDBService();
+  final FirebaseService _firebaseService = FirebaseService();
   List<Employee> employees = [];
 
   @override
@@ -27,9 +27,9 @@ class _EmployeeListScreenState extends State<EmployeeListScreen> {
   Future<void> _loadEmployees() async {
     List<Employee> loadedEmployees;
     if (widget.sector != null) {
-      loadedEmployees = await _mongoService.getEmployeesBySector(widget.sector!);
+      loadedEmployees = await _firebaseService.getEmployeesBySector(widget.sector!);
     } else {
-      loadedEmployees = await _mongoService.getEmployees();
+      loadedEmployees = await _firebaseService.getEmployees();
     }
     setState(() {
       employees = loadedEmployees;
@@ -42,7 +42,7 @@ class _EmployeeListScreenState extends State<EmployeeListScreen> {
       builder: (context) => EditEmployeeModal(
         employee: employee,
         onSave: (updatedEmployee) async {
-          await _mongoService.updateEmployee(updatedEmployee);
+          await _firebaseService.updateEmployee(updatedEmployee);
           _loadEmployees();
         },
       ),
@@ -55,7 +55,7 @@ class _EmployeeListScreenState extends State<EmployeeListScreen> {
       builder: (context) => DeleteEmployeeModal(
         employee: employee,
         onConfirm: () async {
-          await _mongoService.deleteEmployee(employee.id);
+          await _firebaseService.deleteEmployee(employee.id);
           _loadEmployees();
         },
       ),

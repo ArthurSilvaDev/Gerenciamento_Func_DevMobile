@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/employee.dart';
-import '../services/mongodb_service.dart';
+import '../services/firebase_service.dart';
 
 class EmployeeRegisterScreen extends StatefulWidget {
   const EmployeeRegisterScreen({super.key});
@@ -14,7 +14,7 @@ class _EmployeeRegisterScreenState extends State<EmployeeRegisterScreen> {
   final _nameController = TextEditingController();
   final _cpfController = TextEditingController();
   final _sectorController = TextEditingController();
-  final _mongoService = MongoDBService();
+  final _firebaseService = FirebaseService();
 
   Future<void> _registerEmployee() async {
     if (_formKey.currentState!.validate()) {
@@ -25,7 +25,7 @@ class _EmployeeRegisterScreenState extends State<EmployeeRegisterScreen> {
         sector: _sectorController.text,
       );
 
-      await _mongoService.addEmployee(employee);
+      await _firebaseService.addEmployee(employee);
       
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Funcionário cadastrado com sucesso!')),

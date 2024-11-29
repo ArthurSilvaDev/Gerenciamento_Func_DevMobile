@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../services/mongodb_service.dart';
+import '../services/firebase_service.dart';
 import 'employee_list_screen.dart';
 
 class SectorsScreen extends StatefulWidget {
@@ -10,7 +10,7 @@ class SectorsScreen extends StatefulWidget {
 }
 
 class _SectorsScreenState extends State<SectorsScreen> {
-  final MongoDBService _mongoService = MongoDBService();
+  final FirebaseService _firebaseService = FirebaseService();
   List<String> sectors = [];
 
   @override
@@ -20,7 +20,7 @@ class _SectorsScreenState extends State<SectorsScreen> {
   }
 
   Future<void> _loadSectors() async {
-    final loadedSectors = await _mongoService.getSectors();
+    final loadedSectors = await _firebaseService.getSectors();
     setState(() {
       sectors = loadedSectors;
     });

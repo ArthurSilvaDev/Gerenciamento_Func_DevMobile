@@ -1,21 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'screens/login_screen.dart';
-import 'services/mongodb_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
-  final mongoService = MongoDBService();
   try {
-    await mongoService.connect();
-    print('Conexão estabelecida com sucesso');
+    await Firebase.initializeApp(
+      options: const FirebaseOptions(
+        apiKey: "AIzaSyAS6KknnaB2dVZ_5IVRpfGd-Wz9fWACFNM",
+        appId: "1:601482484427:android:f33e14cc5fa5e3f4dd594e",
+        messagingSenderId: "601482484427",
+        projectId: "my-app1-89f2d",
+        databaseURL: "https://my-app1-89f2d-default-rtdb.firebaseio.com",
+      ),
+    );
     
-    await mongoService.insertTestEmployees();
+    print('✅ Firebase inicializado com sucesso!');
     
-    final employees = await mongoService.getEmployees();
-    print('Total de funcionários carregados: ${employees.length}');
+    // Teste de conexão com o Realtime Database
+    final ref = FirebaseDatabase.instance.ref();
+    await ref.child('test').push().set({
+      'message': 'Teste de conexão',
+      'timestamp': ServerValue.timestamp,
+    });
+    
+    print('✅ Conexão com Realtime Database estabelecida!');
+    
   } catch (e) {
-    print('Erro na inicialização: $e');
+    print('❌ Erro na inicialização do Firebase: $e');
   }
   
   runApp(const MyApp());
@@ -29,10 +43,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Sistema de Funcionários',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: LoginScreen(),
+      home: const LoginScreen(),
     );
   }
 }
