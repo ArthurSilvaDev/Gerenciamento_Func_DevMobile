@@ -13,13 +13,30 @@ class _LoginScreenState extends State<LoginScreen> {
   final _userController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  void _login() {
+   void _login() {
     if (_formKey.currentState!.validate()) {
-      // Aqui você implementaria sua lógica de autenticação
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const HomeScreen()),
-      );
+      // Validação de usuário e senha
+      if (_userController.text == 'admin' && _passwordController.text == 'admin') {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const HomeScreen()),
+        );
+      } else {
+        // Exibe um alerta caso as credenciais estejam incorretas
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('Erro'),
+            content: const Text('Usuário ou senha incorretos.'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        );
+      }
     }
   }
 
